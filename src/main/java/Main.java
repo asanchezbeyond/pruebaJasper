@@ -6,22 +6,30 @@ import net.sf.jasperreports.export.SimpleExporterInput;
 import net.sf.jasperreports.export.SimpleOutputStreamExporterOutput;
 
 import java.io.*;
-import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class Main {
 
     public static void main(String[] args) throws JRException, IOException {
-        String jrxmlFileName = "src/main/resources/Presupuesto.jrxml";
+        String jrxmlFileName = "src/main/resources/prueba.jrxml";
+        Map<String, Object> parametros = new HashMap<>();
+        parametros.put("saludo","Hola buenas, funciona");
+        
         JasperDesign design = JRXmlLoader.load(jrxmlFileName);
         JasperReport jasperReport = JasperCompileManager.compileReport(design);
-        JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, null,new JREmptyDataSource());
+        
+        JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parametros,new JREmptyDataSource());
+        
         JRPdfExporter pdfExporter = new JRPdfExporter();
         pdfExporter.setExporterInput(new SimpleExporterInput(jasperPrint));
+        
         ByteArrayOutputStream pdfReportStream = new ByteArrayOutputStream();
         pdfExporter.setExporterOutput(new SimpleOutputStreamExporterOutput(pdfReportStream));
         pdfExporter.exportReport();
-        OutputStream responseOutputStream = new FileOutputStream("presupuesto.pdf");
+        
+        OutputStream responseOutputStream = new FileOutputStream("prueba.pdf");
         responseOutputStream.write(pdfReportStream.toByteArray());
         responseOutputStream.close();
         pdfReportStream.close();
