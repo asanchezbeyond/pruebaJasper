@@ -22,7 +22,6 @@
 					<property name="net.sf.jasperreports.export.pdf.field.text.multiline" value="true"/>
 					<propertyExpression name="net.sf.jasperreports.export.pdf.field.value"><![CDATA[$P{saludo}]]></propertyExpression>
 				</reportElement>
-				<textFieldExpression><![CDATA[$P{saludo}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

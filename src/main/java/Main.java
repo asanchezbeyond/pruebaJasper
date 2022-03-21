@@ -15,7 +15,7 @@ public class Main {
     public static void main(String[] args) throws JRException, IOException {
         String jrxmlFileName = "src/main/resources/prueba.jrxml";
         Map<String, Object> parametros = new HashMap<>();
-        parametros.put("saludo","Hola buenas, funciona");
+        parametros.put("saludo","Haga click para editar el campo");
         
         JasperDesign design = JRXmlLoader.load(jrxmlFileName);
         JasperReport jasperReport = JasperCompileManager.compileReport(design);
